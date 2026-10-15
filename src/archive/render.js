@@ -4,7 +4,7 @@ const path = require("node:path");
 const { getChartJsBundle, getBulmaCss, getClientStyles, getClientAppScript } = require("./bundle.js");
 
 function getClientHtmlBody() {
-    const htmlPath = path.resolve(__dirname, "../../client/index.html");
+    const htmlPath = path.resolve(__dirname, "../../client/client.html");
     return fs.readFileSync(htmlPath, "utf8");
 }
 

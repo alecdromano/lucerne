@@ -6,6 +6,8 @@ In addition to supporting data migration to modern TSS alternatives, Lucerne san
 
 At the moment, [Shopmonkey](https://www.shopmonkey.io/) is the only officially supported migration target, but the resulting data structure is easily adaptable to other platforms, so others may follow with continued development.
 
+[![Demo Archive](https://img.shields.io/badge/Demo%20Archive-blue?style=for-the-badge&logo=githubpages&logoColor=white)](https://alecdromano.github.io/lucerne/)
+
 ![Lucerne Portable Archive Interface](docs/archive.webp)
 
 ## Getting Started
