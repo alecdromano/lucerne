@@ -1,0 +1,88 @@
+{
+    "order": [
+        "INV_NUM"
+    ],
+    "item": [
+        "INV_NUM"
+    ],
+    "payment": [
+        "INV_NUM",
+        "TYPE_TRANS",
+        "AMOUNT",
+        "TRANS_DATE"
+    ],
+    "customer": [
+        "ID",
+        "NAME",
+        "ADDRESS",
+        "ADDRESS2",
+        "CITY",
+        "STATE",
+        "ZIP",
+        "COMP_NAME",
+        "HOME_PHONE",
+        "WORK_PHONE",
+        "FAX_PHONE",
+        "CELL_PHONE",
+        "EMAIL_ADDR",
+        "TAX_EXEMPT",
+        "AUTO_MAKE",
+        "AUTO_MODEL",
+        "AUTO_YEAR",
+        "COLOR",
+        "VIN_NUM"
+    ],
+    "inventory": [
+        "MODEL",
+        "DESCRIPTIO",
+        "COST",
+        "RETAIL",
+        "MAKE",
+        "CATEGORY",
+        "CLASS",
+        "ON_HAND"
+    ],
+    "orderitem": [
+        "INV_NUM",
+        "STATUS",
+        "QUANTITY",
+        "MAKE",
+        "MODEL",
+        "DESCRIPTIO",
+        "SERIAL_NUM",
+        "COST",
+        "PRICE",
+        "SUBTOTAL",
+        "TRANS_DATE",
+        "SALESPRSN",
+        "SALESPRSN2",
+        "CUST_NAME"
+    ],
+    "referral": [
+        "INV_NUM",
+        "INV_DATE",
+        "CUSTOMER_ID",
+        "CUST_ID",
+        "CUST_UID",
+        "CUST_NAME",
+        "SALESPRSN",
+        "SALESPRSN2",
+        "AUTO_ID",
+        "NEW_AUTO_ID",
+        "VEHICLE_ID",
+        "JOB_DESC",
+        "JOB_DESC2",
+        "WORK_DESC",
+        "WORK_DESC2",
+        "WORK_DESC3",
+        "WORK_DESC4",
+        "WORK_DESC5",
+        "REFERENCE",
+        "INV_TOTAL",
+        "BAL_DU",
+        "DEP_AMT",
+        "INV_STATUS",
+        "PICKUP_DATE",
+        "DELIVERY_DATE"
+    ]
+}

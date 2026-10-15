@@ -1,0 +1,210 @@
+.nextstep {
+    grid-area: nextstep;
+    background: var(--bulma-primary);
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    color: #e2eaf3;
+    padding: 12px 0;
+    z-index: 20;
+    box-shadow: 0 -2px 10px rgba(0, 30, 60, 0.2);
+
+    & .nextstep-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        max-width: calc(var(--content-max) + var(--sidebar-width));
+        margin: 0 auto;
+        padding-left: var(--content-pad-x);
+        padding-right: var(--content-pad-x);
+        flex-wrap: nowrap;
+        min-width: 0;
+
+        & .nextstep-controls {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            flex: 0 0 auto;
+
+            & .nextstep-platform-inline {
+                --select-border: rgba(255, 255, 255, 0.25);
+                background: rgba(0, 0, 0, 0.22);
+                border-color: var(--select-border);
+                color: #ffffff;
+                min-height: var(--control-height);
+
+                & .select-inline-label {
+                    color: #d2e4f5;
+                }
+
+                & .select select {
+                    color: #ffffff;
+                    border-left-color: var(--select-border);
+                    min-height: calc(var(--control-height) - 4px);
+                }
+
+                &.select-inline .select:not(.is-multiple):not(.is-loading)::after,
+                & .select:not(.is-multiple):not(.is-loading)::after,
+                & .select::after {
+                    border-color: #ffffff;
+                }
+            }
+        }
+
+        & .nextstep-stats {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 6px 8px;
+            max-height: 56px;
+            font-size: 0.85em;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: thin;
+            scrollbar-color: #2e4d6d transparent;
+            padding: 2px 8px 4px;
+            min-width: 0;
+            flex: 1 1 auto;
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+            scroll-behavior: auto;
+            --nextstep-fade-left: transparent;
+            --nextstep-fade-right: transparent;
+
+            &.is-dragging {
+                cursor: grabbing;
+                scroll-behavior: auto;
+            }
+
+            &.has-scroll-left {
+                --nextstep-fade-left: black;
+
+                &:not(.has-scroll-right) {
+                    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 100%);
+                    mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 100%);
+                }
+
+                &.has-scroll-right {
+                    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+                    mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+                }
+            }
+
+            &.has-scroll-right:not(.has-scroll-left) {
+                -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 24px), transparent 100%);
+                mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 24px), transparent 100%);
+            }
+
+            &::-webkit-scrollbar {
+                height: 4px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: #2e4d6d;
+                border-radius: 4px;
+            }
+
+            & .nextstep-stat-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 5px;
+                background: rgba(255, 255, 255, 0.07);
+                border: 1px solid rgba(255, 255, 255, 0.11);
+                border-radius: 6px;
+                padding: 2px 8px;
+                color: #c9ddec;
+                white-space: nowrap;
+                flex: 0 0 auto;
+                width: auto;
+                cursor: inherit;
+                transition: background 120ms ease, border-color 120ms ease;
+
+                &:hover {
+                    background: rgba(255, 255, 255, 0.12);
+                    border-color: rgba(255, 255, 255, 0.2);
+                }
+
+                & .nextstep-stat-label {
+                    text-transform: uppercase;
+                    font-size: 0.74em;
+                    letter-spacing: 0.05em;
+                    color: #8daac4;
+                    font-weight: 700;
+                }
+
+                & .nextstep-stat-val {
+                    font-weight: 700;
+                    color: #ffffff;
+                }
+            }
+        }
+
+        & .nextstep-brand {
+            display: inline-flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+            flex: 0 0 auto;
+
+            & .nextstep-brand-header {
+                display: inline-flex;
+                align-items: baseline;
+                gap: 6px;
+                line-height: 1;
+
+                & .nextstep-brand-title {
+                    color: #ffffff;
+                    font-weight: 800;
+                    font-size: 1.05em;
+                    letter-spacing: 0.04em;
+                    text-decoration: none;
+                    transition: color 120ms ease;
+
+                    &:hover {
+                        color: #9cd5ff;
+                    }
+                }
+
+                & .nextstep-brand-version {
+                    color: #8daac4;
+                    font-size: 0.74em;
+                    font-weight: 600;
+                    letter-spacing: 0.03em;
+                }
+            }
+
+            & .nextstep-brand-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                font-size: 0.74em;
+                font-weight: 700;
+                background: rgba(255, 255, 255, 0.12);
+                color: #ffffff !important;
+                border: 1px solid rgba(255, 255, 255, 0.28);
+                border-radius: 6px;
+                padding: 3px 9px;
+                height: auto;
+                line-height: 1.3;
+                text-decoration: none;
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+                transition: background 140ms ease, border-color 140ms ease, transform 100ms ease;
+
+                &:hover {
+                    background: rgba(255, 255, 255, 0.24);
+                    border-color: rgba(255, 255, 255, 0.5);
+                    color: #ffffff !important;
+                    transform: translateY(-1px);
+                }
+
+                & .nextstep-brand-icon {
+                    display: inline-block;
+                    vertical-align: middle;
+                    flex: 0 0 auto;
+                }
+            }
+        }
+    }
+}

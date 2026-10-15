@@ -1,0 +1,38 @@
+{
+    "charts": {
+        "polar": {
+            "sizePct": 65,
+            "cutoutPct": 0,
+            "strokePx": 0,
+            "insetFactor": 0,
+            "colors": {
+                "posted": "var(--posted)",
+                "unposted": "var(--unposted)",
+                "voided": "var(--voided)",
+                "other": "var(--other)",
+                "grid": "rgba(60, 91, 118, 0.17)",
+                "angleLines": "rgba(60, 91, 118, 0.14)",
+                "ticks": "#6f8395"
+            }
+        },
+        "selectionDonut": {
+            "sizePct": 95,
+            "cutoutPct": 98,
+            "strokePx": 2,
+            "colors": {
+                "selected": "var(--order)",
+                "other": "var(--bg)"
+            }
+        },
+        "profitDonut": {
+            "sizePct": 88,
+            "cutoutPct": 80,
+            "strokePx": 2,
+            "colors": {
+                "profit": "var(--profit)",
+                "partsCost": "var(--item)",
+                "laborCost": "var(--labor)"
+            }
+        }
+    }
+}

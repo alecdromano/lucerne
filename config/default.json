@@ -1,0 +1,22 @@
+{
+    "input": {
+        "customers": "input/customer-telemarketing.csv",
+        "vehicles": "input/customer-telemarketing.csv",
+        "orders": "input/customer-referral.csv",
+        "lineitems": "input/transaction-profitability-by-invoice.csv",
+        "committed": "input/product-committed.csv",
+        "deposits": "input/deposit-and-payment.csv",
+        "drawer": "input/total-drawer-summary.csv",
+        "inventory": "input/inventory-at-a-glance.csv"
+    },
+    "output": {
+        "dir": "output",
+        "filename": "archive.html"
+    },
+    "defaults": {
+        "splitEvery": 0,
+        "includeEmptyFields": false,
+        "showProgress": true,
+        "progressEvery": 500
+    }
+}

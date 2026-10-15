@@ -1,0 +1,73 @@
+{
+    "meta": [
+        ["Data Integrity", "_DATA_INTEGRITY"],
+        ["Status", "_STATUS_LABEL"],
+        ["Invoice Date", "_INVOICE_DATE"],
+        ["Created Date", "_CREATED_DATE"],
+        ["Transaction Date", "_TRANSACTION_DATE"],
+        ["Salesperson", "SALESPRSN"],
+        ["Salesperson 2", "SALESPRSN2"],
+        ["Reference", "REFERENCE"],
+        ["Pickup Date", "PICKUP_DATE"],
+        ["Delivery Date", "DELIVERY_DATE"]
+    ],
+    "customer": [
+        ["Customer", "CUST_NAME"],
+        ["Address", "CUST_ADDR"],
+        ["Address 2", "CUST_ADDR2"],
+        ["City", "CUST_CITY"],
+        ["State", "CUST_STATE"],
+        ["Zip", "CUST_ZIP"],
+        ["Home Phone", "HOME_PHONE"],
+        ["Work Phone", "WORK_PHONE"],
+        ["Cell Phone", "CELL_PHONE"],
+        ["Email", "EMAIL_ADDR"]
+    ],
+    "vehicle": [
+        ["Year", "AUTO_YEAR"],
+        ["Make", "AUTO_MAKE"],
+        ["Model", "AUTO_MODEL"],
+        ["Color", "AUTO_COLOR"],
+        ["VIN", "AUTO_VIN"],
+        ["Odometer", "AUTO_ODOM"],
+        ["Plate", "AUTO_REG"]
+    ],
+    "totals": [
+        ["Materials", "MAT_TOTAL"],
+        ["Labor", "TOTAL_LABO"],
+        ["Sublet", "SUB_PRICE"],
+        ["Other", "OTHER_SUB"],
+        ["Misc", "MISC_SUB"],
+        ["Subtotal", "INV_SUBTOTAL"],
+        ["Tax", "TOTAL_TAX"],
+        ["Order Total", "INV_TOTAL"],
+        ["Deposit", "DEP_AMT"],
+        ["Paid Cash", "PAID_CASH"],
+        ["Paid Check", "PAID_CHECK"],
+        ["Paid Card", "PAID_CHARG"],
+        ["Paid Open", "PAID_OPEN"],
+        ["Paid House", "PAID_HOUSE"],
+        ["Balance Due", "BAL_DU"]
+    ],
+    "notes": [
+        "JOB_DESC",
+        "JOB_DESC2",
+        "WORK_DESC",
+        "WORK_DESC2",
+        "WORK_DESC3",
+        "WORK_DESC4",
+        "WORK_DESC5",
+        "SPCL_INST",
+        "SPCL_INST2"
+    ],
+    "lineitems": [
+        ["Qty", "QUANTITY"],
+        ["Description", "DESCRIPTIO"],
+        ["Make", "MAKE"],
+        ["Model", "MODEL"],
+        ["Serial", "SERIAL_NUM"],
+        ["Cost", "COST"],
+        ["Price", "PRICE"],
+        ["Subtotal", "SUBTOTAL"]
+    ]
+}

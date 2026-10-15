@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Telemarketing Customer List",
+        "description": "Customer directory with phone numbers and addresses",
+        "defaultFile": "input/customer-telemarketing.csv",
+        "optionKey": "inputCustomers"
+    },
+    {
+        "name": "Customer Referred by Report",
+        "description": "Invoices with customer info broken down by referral",
+        "defaultFile": "input/customer-referral.csv",
+        "optionKey": "inputOrders"
+    },
+    {
+        "name": "Inventory at a Glance",
+        "description": "Inventory catalog and on-hand counts",
+        "defaultFile": "input/inventory-at-a-glance.csv",
+        "optionKey": "inputInventory"
+    },
+    {
+        "name": "Product Committed Report",
+        "description": "Committed items and associated invoice numbers",
+        "defaultFile": "input/product-committed.csv",
+        "optionKey": "inputCommittedItems"
+    },
+    {
+        "name": "Deposit and Payment Report",
+        "description": "Payment logs and order deposits",
+        "defaultFile": "input/deposit-and-payment.csv",
+        "optionKey": "inputDeposits"
+    },
+    {
+        "name": "Total Drawer Summary",
+        "description": "Payment logs and drawer transactions",
+        "defaultFile": "input/total-drawer-summary.csv",
+        "optionKey": "inputDrawer"
+    },
+    {
+        "name": "Profitability by Invoice#",
+        "description": "Line-item breakdown, parts, labor, and costs per invoice",
+        "defaultFile": "input/transaction-profitability-by-invoice.csv",
+        "optionKey": "inputOrderItems"
+    }
+]

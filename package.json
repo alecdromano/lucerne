@@ -1,0 +1,24 @@
+{
+    "name": "lucerne",
+    "version": "1.1.7",
+    "private": true,
+    "license": "MIT",
+    "description": "Liberate, archive, and migrate business data from TSS XP",
+    "main": "src/index.js",
+    "bin": {
+        "lucerne": "src/index.js"
+    },
+    "scripts": {
+        "start": "node src/index.js",
+        "build": "node src/index.js",
+        "test": "node --test \"src/**/*.test.js\""
+    },
+    "dependencies": {
+        "bulma": "^1.0.4",
+        "chart.js": "^4.5.1",
+        "csv-parse": "^7.0.3",
+        "iconv-lite": "^0.7.3",
+        "jszip": "^3.10.2",
+        "xlsx": "^0.18.5"
+    }
+}

@@ -1,0 +1,247 @@
+<div id="appLoading" class="app-loading" aria-live="polite" aria-busy="true">
+    <div class="app-loading-panel">
+        <div class="app-loading-spinner" aria-hidden="true"></div>
+        <div id="appLoadingText">Loading TSS archive...</div>
+    </div>
+</div>
+
+<div class="app-shell">
+    <div class="topbar">
+        <div class="topgrid">
+            <div id="headerLogo" class="logo" aria-label="TSS XP" role="img"></div>
+            <div id="filter-controls">
+                <input id="search" class="input" type="search" placeholder="Search orders by order #, customer, phone, sales, notes, totals, line item text..." autocomplete="off">
+            </div>
+            <div class="topbar-break" aria-hidden="true"></div>
+            <label class="date-inline" for="filterDateFrom">
+                <span class="date-inline-label">Starting</span>
+                <input id="filterDateFrom" class="input" type="date" aria-label="Filter from created date" title="Starting created date">
+            </label>
+            <label class="date-inline" for="filterDateTo">
+                <span class="date-inline-label">Ending</span>
+                <input id="filterDateTo" class="input" type="date" aria-label="Filter to created date" title="Ending created date">
+            </label>
+            <div class="select-inline">
+                <label class="select-inline-label" for="sortBy">Sort by</label>
+                <div class="select is-small">
+                    <select id="sortBy" aria-label="Sort matched orders">
+                        <option value="invoice">Order #</option>
+                        <option value="invoiceDate" selected>Invoice Date</option>
+                        <option value="createdDate">Created Date</option>
+                        <option value="customer">Customer A-Z</option>
+                        <option value="balanceDue">Balance Due</option>
+                        <option value="invoiceTotal">Order Total</option>
+                    </select>
+                </div>
+            </div>
+            <div class="select-inline">
+                <label class="select-inline-label" for="sortDir">Direction</label>
+                <div class="select is-small">
+                    <select id="sortDir" aria-label="Sort direction">
+                        <option value="asc">Ascending</option>
+                        <option value="desc" selected>Descending</option>
+                    </select>
+                </div>
+            </div>
+            <button id="searchBtn" class="button is-primary" type="button">Search</button>
+            <button id="clear" class="button is-light" type="button">Clear</button>
+            <button id="printBtn" class="button is-light" type="button">Print</button>
+            <button id="sidebarToggleBtn" class="button is-light sidebar-toggle-btn" type="button" aria-expanded="false" title="Toggle Filters and Overview panel">Filters</button>
+        </div>
+    </div>
+
+    <aside class="filter-sidebar" aria-label="Filters">
+        <div class="sidebar-header-bar">
+            <span class="sidebar-header-title">Filters &amp; Overview</span>
+            <button id="sidebarCloseBtn" class="button is-small is-light sidebar-close-btn" type="button" aria-label="Close filters panel">&times;</button>
+        </div>
+        <div class="filter-sidebar-inner">
+            <h2 class="sidebar-title">Overview</h2>
+            <div class="sidebar-section" aria-label="Overview">
+                <div class="overview-panel">
+                    <div class="overview-chart-pad">
+                        <div id="overviewChartWrap" class="overview-chart-wrap">
+                            <div class="overview-polar-host">
+                                <canvas id="overviewStatusChart" class="overview-chart"></canvas>
+                            </div>
+                            <div class="overview-selection-host" aria-hidden="true">
+                                <canvas id="overviewSelectionChart" class="overview-selection-chart" aria-hidden="true"></canvas>
+                            </div>
+                            <div class="overview-profit-host" aria-hidden="true">
+                                <canvas id="overviewProfitChart" class="overview-profit-chart" aria-hidden="true"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="overviewSummary" class="overview-summary" aria-live="polite"></div>
+                    <div id="overviewLegend" class="overview-legend"></div>
+                </div>
+            </div>
+
+            <h2 class="sidebar-title">Filters</h2>
+
+            <div id="sidebarStatusSection" class="sidebar-section" aria-label="Status filters">
+                <h3 class="sidebar-section-title">Status</h3>
+                <div class="status-check-grid" role="group" aria-label="Included statuses">
+                    <label class="status-check checkbox" for="tagPosted"><input id="tagPosted" type="checkbox" checked>Posted</label>
+                    <label class="status-check checkbox" for="tagUnposted"><input id="tagUnposted" type="checkbox" checked>Unposted</label>
+                    <label class="status-check checkbox" for="tagVoided"><input id="tagVoided" type="checkbox" checked>Voided</label>
+                    <label class="status-check checkbox" for="tagBlankStatus"><input id="tagBlankStatus" type="checkbox" checked>Other</label>
+                </div>
+            </div>
+
+            <div id="sidebarFinanceSection" class="sidebar-section" aria-label="Finance filters">
+                <h3 class="sidebar-section-title">Finance</h3>
+                <div class="tag-grid">
+                    <button id="tagPayments" type="button" class="tag-btn button is-small" aria-pressed="false">Has Payments</button>
+                    <button id="tagDeposits" type="button" class="tag-btn button is-small" aria-pressed="false">Has Deposits</button>
+                    <button id="tagBalanceDue" type="button" class="tag-btn button is-small" aria-pressed="false">Balance Due</button>
+                    <button id="tagFullyPaid" type="button" class="tag-btn button is-small" aria-pressed="false">Fully Paid</button>
+                    <button id="tagMostlyPaid" type="button" class="tag-btn button is-small" aria-pressed="false">Mostly Paid (95%)</button>
+                </div>
+            </div>
+
+            <div class="sidebar-section" aria-label="Labor filters">
+                <h3 class="sidebar-section-title">LABOR</h3>
+                <div class="tag-grid">
+                    <button id="tagHasLabor" type="button" class="tag-btn button is-small" aria-pressed="false">Has Labor</button>
+                    <button id="tagHasLaborDuration" type="button" class="tag-btn button is-small" aria-pressed="false">Has Labor Duration</button>
+                </div>
+            </div>
+
+            <div class="sidebar-section" aria-label="Salesperson filters">
+                <h3 class="sidebar-section-title">Salesperson</h3>
+                <div id="salespersonFilters" class="tag-grid"></div>
+                <div id="salespersonEmpty" class="sidebar-empty">No salesperson values found</div>
+            </div>
+
+            <div class="sidebar-section" aria-label="Priority filters">
+                <h3 class="sidebar-section-title">Priority</h3>
+                <div class="tag-grid">
+                    <button id="tagMarked" type="button" class="tag-btn button is-small" aria-pressed="false">Needs Review</button>
+                </div>
+            </div>
+
+            <div class="sidebar-section" aria-label="Custom tag filters">
+                <h3 class="sidebar-section-title">Custom Tags</h3>
+                <div id="customTagFilters" class="tag-grid"></div>
+                <div id="customTagEmpty" class="sidebar-empty">No tags defined yet</div>
+            </div>
+
+            <div class="sidebar-section" aria-label="Date delta filters">
+                <h3 class="sidebar-section-title">Timespans</h3>
+                <div class="delta-slider-group">
+                    <div class="delta-slider-row">
+                        <span class="delta-slider-label">Created &harr; Invoiced</span>
+                        <span class="delta-slider-value"><span class="delta-pair-prefix">&gt;</span><input type="number" class="delta-pair-input" id="delta-pair-created-invoiced" min="0" max="999" step="1" value="0"><span class="delta-pair-suffix">days</span></span>
+                    </div>
+                    <div class="delta-slider-row">
+                        <span class="delta-slider-label">Created &harr; Modified</span>
+                        <span class="delta-slider-value"><span class="delta-pair-prefix">&gt;</span><input type="number" class="delta-pair-input" id="delta-pair-created-modified" min="0" max="999" step="1" value="0"><span class="delta-pair-suffix">days</span></span>
+                    </div>
+                    <div class="delta-slider-row">
+                        <span class="delta-slider-label">Created &harr; First Payment</span>
+                        <span class="delta-slider-value"><span class="delta-pair-prefix">&gt;</span><input type="number" class="delta-pair-input" id="delta-pair-created-first-paid" min="0" max="999" step="1" value="0"><span class="delta-pair-suffix">days</span></span>
+                    </div>
+                    <div class="delta-slider-row">
+                        <span class="delta-slider-label">Created &harr; Last Payment</span>
+                        <span class="delta-slider-value"><span class="delta-pair-prefix">&gt;</span><input type="number" class="delta-pair-input" id="delta-pair-created-paid" min="0" max="999" step="1" value="0"><span class="delta-pair-suffix">days</span></span>
+                    </div>
+                    <div class="delta-slider-row">
+                        <span class="delta-slider-label">Invoiced &harr; Modified</span>
+                        <span class="delta-slider-value"><span class="delta-pair-prefix">&gt;</span><input type="number" class="delta-pair-input" id="delta-pair-invoiced-modified" min="0" max="999" step="1" value="0"><span class="delta-pair-suffix">days</span></span>
+                    </div>
+                    <div class="delta-slider-row">
+                        <span class="delta-slider-label">Invoiced &harr; First Payment</span>
+                        <span class="delta-slider-value"><span class="delta-pair-prefix">&gt;</span><input type="number" class="delta-pair-input" id="delta-pair-invoiced-first-paid" min="0" max="999" step="1" value="0"><span class="delta-pair-suffix">days</span></span>
+                    </div>
+                    <div class="delta-slider-row">
+                        <span class="delta-slider-label">Invoiced &harr; Last Payment</span>
+                        <span class="delta-slider-value"><span class="delta-pair-prefix">&gt;</span><input type="number" class="delta-pair-input" id="delta-pair-invoiced-paid" min="0" max="999" step="1" value="0"><span class="delta-pair-suffix">days</span></span>
+                    </div>
+                    <div class="delta-slider-row">
+                        <span class="delta-slider-label">Modified &harr; First Payment</span>
+                        <span class="delta-slider-value"><span class="delta-pair-prefix">&gt;</span><input type="number" class="delta-pair-input" id="delta-pair-modified-first-paid" min="0" max="999" step="1" value="0"><span class="delta-pair-suffix">days</span></span>
+                    </div>
+                    <div class="delta-slider-row">
+                        <span class="delta-slider-label">Modified &harr; Last Payment</span>
+                        <span class="delta-slider-value"><span class="delta-pair-prefix">&gt;</span><input type="number" class="delta-pair-input" id="delta-pair-modified-paid" min="0" max="999" step="1" value="0"><span class="delta-pair-suffix">days</span></span>
+                    </div>
+                    <div class="delta-slider-row">
+                        <span class="delta-slider-label">First &harr; Last Payment</span>
+                        <span class="delta-slider-value"><span class="delta-pair-prefix">&gt;</span><input type="number" class="delta-pair-input" id="delta-pair-first-paid-paid" min="0" max="999" step="1" value="0"><span class="delta-pair-suffix">days</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="sidebar-title with-gap">Trends</h2>
+            <div class="sidebar-section" aria-label="Trend charts">
+                <div class="trend-toggle">
+                    <label class="status-check checkbox" for="excludeEdgeMonthsToggle"><input id="excludeEdgeMonthsToggle" type="checkbox" checked>Exclude Edge Months</label>
+                </div>
+                <div class="trend-controls">
+                    <label class="status-check trend-toggle-check checkbox" for="clampOutliersToggle"><input id="clampOutliersToggle" type="checkbox" checked>Clamp Outliers</label>
+                    <input id="trendClampRange" class="trend-clamp-range" type="range" min="0" max="4" step="0.25" value="1.75" aria-label="Trend outlier clamp strength">
+                    <button id="trendClampReset" class="trend-clamp-reset button is-small" type="button" title="Reset clamp to default" aria-label="Reset clamp to default">&#8635;</button>
+                </div>
+                <div id="trendList" class="trend-list"></div>
+            </div>
+        </div>
+    </aside>
+    <div id="sidebarBackdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+    <section id="ordersPane" class="orders-pane">
+        <main id="orders"></main>
+        <div id="loadMore" class="load-more"></div>
+    </section>
+
+    <footer id="nextstep" class="nextstep" role="region" aria-label="Data migration and source stats">
+        <div class="nextstep-inner">
+            <div class="nextstep-controls">
+                <button id="nextstepMigrateBtn" class="button is-success" type="button" title="Download migration package for selected platform">Migrate My Data</button>
+                <div class="select-inline nextstep-platform-inline">
+                    <label class="select-inline-label" for="nextstepPlatform">Target Platform</label>
+                    <div class="select is-small">
+                        <select id="nextstepPlatform" class="nextstep-select" aria-label="Target migration platform"></select>
+                    </div>
+                </div>
+            </div>
+            <div id="nextstepStats" class="nextstep-stats"></div>
+            <div class="nextstep-brand">
+                <div class="nextstep-brand-header">
+                    <a class="nextstep-brand-title" href="https://github.com/alecdromano/lucerne" target="_blank" rel="noopener noreferrer">Lucerne</a>
+                    <span class="nextstep-brand-version">v1.1.7</span>
+                </div>
+                <a class="nextstep-brand-link button is-small" href="https://github.com/alecdromano/lucerne" target="_blank" rel="noopener noreferrer">
+                    <svg class="nextstep-brand-icon" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="currentColor">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                    </svg>
+                    <span>GitHub Repository</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div id="trendModal" class="trend-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="trendModalTitle">
+    <div class="trend-modal-card">
+        <div class="trend-modal-head">
+            <div>
+                <h3 id="trendModalTitle" class="trend-modal-title"></h3>
+                <p id="trendModalSubtitle" class="trend-modal-sub"></p>
+            </div>
+            <button id="trendModalClose" type="button" class="trend-modal-close" aria-label="Close trend dialog" title="Close">&times;</button>
+        </div>
+        <div class="trend-modal-body">
+            <div class="trend-modal-controls" aria-label="Trend options">
+                <div class="trend-controls">
+                    <label class="status-check trend-toggle-check" for="modalExcludeEdgeMonthsToggle"><input id="modalExcludeEdgeMonthsToggle" type="checkbox" checked>Exclude Edge Months</label>
+                    <label class="status-check trend-toggle-check" for="modalSmoothLineToggle"><input id="modalSmoothLineToggle" type="checkbox">Smooth Line</label>
+                    <label class="status-check trend-toggle-check" for="modalClampOutliersToggle"><input id="modalClampOutliersToggle" type="checkbox" checked>Clamp Outliers</label>
+                    <input id="modalTrendClampRange" class="trend-clamp-range" type="range" min="0" max="4" step="0.25" value="1.75" aria-label="Trend outlier clamp strength in modal">
+                    <button id="modalTrendClampReset" class="trend-clamp-reset" type="button" title="Reset clamp to default" aria-label="Reset clamp to default">&#8635;</button>
+                </div>
+            </div>
+            <canvas id="trendModalCanvas" class="trend-modal-canvas" width="940" height="460"></canvas>
+        </div>
+    </div>
+</div>

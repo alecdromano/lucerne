@@ -1,0 +1,9 @@
+{
+    "enabled": true,
+    "updateEvery": 500,
+    "singleWidth": 30,
+    "stackedWidth": 24,
+    "minWidth": 8,
+    "labelWidth": 9,
+    "spinner": "|/-\\"
+}
